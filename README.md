@@ -1,2 +1,2 @@
-# pokemon-satus
+# pokemon-status
 Adote um pokemon para seu README
