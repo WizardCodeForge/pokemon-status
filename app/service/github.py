@@ -1,60 +1,50 @@
 import requests
-from type.github_service import ReposDTO
+from type.github_service import MetricsDTO
 import os
 
-header = {"auth": os.environ.get("GITHUB_TOKEN", "Nada")}
 
+def get_basic_metrics(user: str) -> MetricsDTO:
+    url = 'https://api.github.com/graphql'
 
-def get_repos(user: str) -> list[ReposDTO]:
-    url = f"https://api.github.com/users/{user}/repos"
-    repos = []
-    page = 1
+    header = {"Authorization": f"Bearer {os.environ['GITHUB_TOKEN']}"}
 
-    while True:
-        params = {'per_page': 100, 'page': page}
-        resp = requests.get(url, params=params, headers=header)
-        resp.raise_for_status()
-        data = resp.json()
-
-        if not data:
-            break
-
-        for r in data:
-            dto: ReposDTO = {
-                "name": r["name"],
-                "stars": r["stargazers_count"],
+    query = """
+    query getAmount    {
+        user(login: "%s") {
+            contributionsCollection {
+                totalCommitContributions,
+                totalIssueContributions,
+                totalPullRequestContributions,
+                totalPullRequestReviewContributions
+            },
+            followers {
+                totalCount 
+            },
+            repositories(isFork: false, first: 100) {
+                nodes {
+                    name,
+                    stargazerCount,
+                    forkCount
+                }
             }
-            repos.append(dto)
+        }
+    }
+    """ % user
 
-        page += 1
+    res = requests.post(url, json={'query': query}, headers=header)
+    res.raise_for_status()
+    data = res.json()
 
-    return repos
+    metrics: MetricsDTO = {"all_repos": 0, "all_stars": 0, "all_forks": 0}
+    metrics["all_commits"] = data["data"]["user"]["contributionsCollection"]["totalCommitContributions"]
+    metrics["all_issues"] = data["data"]["user"]["contributionsCollection"]["totalIssueContributions"]
+    metrics["all_prs"] = data["data"]["user"]["contributionsCollection"]["totalPullRequestContributions"]
+    metrics["all_prs_review"] = data["data"]["user"]["contributionsCollection"]["totalPullRequestReviewContributions"]
+    metrics["all_followers"] = data["data"]["user"]["followers"]["totalCount"]
 
+    for repos in data["data"]["user"]["repositories"]["nodes"]:
+        metrics["all_repos"] += 1
+        metrics["all_stars"] += repos["stargazerCount"]
+        metrics["all_forks"] += repos["forkCount"]
 
-def commit_count(user: str, repo_name: str) -> int:
-    url = f'https://api.github.com/repos/{user}/{repo_name}/commits'
-    total_commits = 0
-    page = 1
-
-    while True:
-        params = {'per_page': 100, 'page': page}
-
-        resp = requests.get(url, params=params, headers=header)
-        resp.raise_for_status()
-        data = resp.json()
-
-        if not data:  # Se não houver mais commits, saímos do loop
-            break
-        total_commits += len(data)
-        page += 1
-
-    return total_commits
-
-
-def get_followers(usuario):
-    url = f'https://api.github.com/users/{usuario}'
-
-    resp = requests.get(url, headers=header)
-    resp.raise_for_status()
-    data = resp.json()
-    return data.get('followers', 0)
+    return metrics
