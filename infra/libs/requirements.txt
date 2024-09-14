@@ -2,3 +2,4 @@ requests==2.32.3
 requests-cache==1.2.1
 Flask==3.0.3
 python-dotenv==1.0.1
+svgwrite==1.4.3

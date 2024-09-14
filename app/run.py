@@ -1,24 +1,25 @@
 from modules.pokemon import get_pokemon
-from modules.github import get_github_metrics
-import requests_cache
-from flask import Flask, request
+from modules.github import get_xp_by_github
+from service.svgDraw import get_svg_draw
+from flask import Flask, request, Response
 from dotenv import load_dotenv
 
 
 load_dotenv("./infra/envs/.env")
 app = Flask(__name__)
-requests_cache.install_cache("pokemon_cache", expire_after=100)
 
 
 @app.route('/', methods=['GET'])
-def home():
+def render():
     args = request.args
     user = args.get("user")
-    pokemon = args.get("pokemon")
+    pokemon = args.get("pokemon") or "charmander"
 
-    metrics = get_github_metrics(user)
-    pokemon = get_pokemon(args.get("pokemon"), metrics["all_commits"])
-    return metrics, 200
+    metrics = get_xp_by_github(user)
+    pokeDTO = get_pokemon(pokemon, metrics['all_repos'])
+    svg_content = get_svg_draw(pokeDTO)
+
+    return Response(svg_content, mimetype='image/svg+xml')
 
 
 if __name__ == '__main__':
