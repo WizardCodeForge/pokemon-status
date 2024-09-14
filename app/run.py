@@ -1,6 +1,4 @@
-from modules.pokemon import get_pokemon
-from modules.github import get_xp_by_github
-from service.svgDraw import get_svg_draw
+from module import get_xp_by_github, get_pokemon, get_svg_banner
 from flask import Flask, request, Response
 from dotenv import load_dotenv
 
@@ -12,12 +10,13 @@ app = Flask(__name__)
 @app.route('/', methods=['GET'])
 def render():
     args = request.args
-    user = args.get("user")
+    user = args.get("user") or "CriticalNoob02"
     pokemon = args.get("pokemon") or "charmander"
+    theme = args.get("theme") or "charmander"
 
-    metrics = get_xp_by_github(user)
-    pokeDTO = get_pokemon(pokemon, metrics['all_repos'])
-    svg_content = get_svg_draw(pokeDTO)
+    xp = get_xp_by_github(user)
+    pokeDTO = get_pokemon(pokemon, xp)
+    svg_content = get_svg_banner(pokeDTO, theme)
 
     return Response(svg_content, mimetype='image/svg+xml')
 
