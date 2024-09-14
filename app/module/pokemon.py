@@ -5,7 +5,7 @@ from type.pokemon_service import PokemonDTO
 def get_pokemon(name: str, xp: int) -> PokemonDTO:
     results, validation = get_primary_infos(name)
     if not validation:
-        exit(1)
+        results, _ = get_primary_infos("ekans")
 
     pokemon: PokemonDTO = {"current_level_xp": xp}
 
