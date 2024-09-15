@@ -3,6 +3,6 @@ from typing import TypedDict
 
 class SvgTheme(TypedDict):
     background_bar: str
-    progress_bar: str
-    xp: str
+    gradient_init: str
+    gradient_final: str
     title: str
