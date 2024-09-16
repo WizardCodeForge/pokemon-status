@@ -2,7 +2,11 @@ from api.type.svg_service import SvgTheme
 
 
 def get_svg_image(image: str) -> str:
-    return f'<image href="{image}" x="100" y="10" width="200" height="140" />'
+        return f'''
+        <svg width="200" height="140" xmlns="http://www.w3.org/2000/svg">
+            <image href="{image}" x="0" y="0" width="200" height="140" />
+        </svg>
+    '''
 
 
 def get_svg_progress(theme: SvgTheme, level: int, progress: int) -> str:
