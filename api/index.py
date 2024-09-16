@@ -7,7 +7,7 @@ load_dotenv("./infra/envs/.env")
 app = Flask(__name__)
 
 
-@app.route('/', methods=['GET'])
+@app.route('/')
 def render():
     args = request.args
     user = args.get("user") or "CriticalNoob02"
