@@ -1,20 +1,27 @@
 from api.type.svg_service import SvgTheme
+import requests
+import base64
 
 
 def get_svg_image(image: str) -> str:
-        return f'''
-        <svg width="200" height="140" xmlns="http://www.w3.org/2000/svg">
-            <image href="{image}" x="100" y="10" width="200" height="140" />
-        </svg>
-    '''
+    resp = requests.get(image)
+    base64_str = base64.b64encode(resp.content).decode('utf-8')
+    return f'<image href="data:image/png;base64,{base64_str}" x="150" height="200" width="140"/>'
+
+
+def get_font(path: str) -> str:
+    with open(path, "rb") as font_file:
+        font_base64 = base64.b64encode(font_file.read()).decode('utf-8')
+    return font_base64
+
 
 def get_svg_progress(theme: SvgTheme, level: int, progress: int) -> str:
     return f'''
-        <text x="200" y="170" class="pokemon-font" fill="{theme["title"]}" text-anchor="middle" alignment-baseline="middle">Level {level}</text>
-        <rect x="0" y="200" width="400" height="26" fill="{theme["background_bar"]}" stroke="#000000" stroke-width="2"/>
-        <rect x="0" y="200" width="{progress}%" height="26" fill="{theme["gradient_init"]}" stroke="#000000" stroke-width="1"/>
-        <rect x="0" y="200" width="{progress}%" height="26" fill="url(#grad1)" stroke="#000000" stroke-width="1"/>
-        <text x="200" y="215" class="pokemon-font-small" fill="#000000" text-anchor="middle" alignment-baseline="middle">{progress}%</text>
+        <text x="200" y="185" class="pokemon-font truncate" fill="{theme["title"]}" text-anchor="middle" alignment-baseline="middle">Level {level}</text>
+        <rect x="0" y="200" width="400" height="26" class="truncate" fill="{theme["background_bar"]}" stroke="#000000" stroke-width="2"/>
+        <rect x="0" y="200" width="{progress}%" height="26" class="truncate" fill="{theme["gradient_init"]}" stroke="#000000" stroke-width="1"/>
+        <rect x="0" y="200" width="{progress}%" height="26" class="truncate" fill="url(#grad1)" stroke="#000000" stroke-width="1"/>
+        <text x="200" y="215" class="pokemon-font-small truncate" fill="#000000" text-anchor="middle" alignment-baseline="middle">{progress}%</text>
         <defs>
             <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" style="stop-color:{theme["gradient_init"]};stop-opacity:1" />
@@ -24,24 +31,29 @@ def get_svg_progress(theme: SvgTheme, level: int, progress: int) -> str:
     '''
 
 
-def get_svg_configs() -> str:
-    return """
-    <style>
-        .pokemon-font {
-        font-family: 'Press Start 2P', cursive;
-        font-size: 20px;
-        }
-        .pokemon-font-small {
-        font-family: 'Press Start 2P', cursive;
-        font-size: 18px;
-        }
-    </style>
-    <defs>
+def get_svg_configs(font) -> str:
+    return f'''
         <style>
-        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P');
+            @font-face {{
+                font-family: 'Press Start 2P';
+                src: url('data:font/ttf;base64,{font}') format('truetype');
+            }}
+            .pokemon-font {{
+                font-family: 'Press Start 2P', cursive;
+                font-size: 20px;
+            }}
+            .pokemon-font-small {{
+                font-family: 'Press Start 2P', cursive;
+                font-size: 18px;
+            }}
+            .truncate {{
+                overflow: hidden;
+                -o-text-overflow: ellipsis;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }}
         </style>
-    </defs>
-    """
+    '''
 
 
 def get_theme(theme: str) -> SvgTheme:

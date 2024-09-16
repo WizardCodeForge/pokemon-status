@@ -13,4 +13,4 @@ clean:
 	find . -type d -name '__pycache__' -exec rm -r {} +
 
 run:
-	python3 "app/run.py"
+	python3 "api/index.py"

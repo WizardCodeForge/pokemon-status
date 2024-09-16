@@ -1,4 +1,10 @@
-from api.service.svg import get_svg_image, get_svg_progress, get_theme, get_svg_configs
+from api.service.svg import (
+    get_svg_image,
+    get_svg_progress,
+    get_theme,
+    get_svg_configs,
+    get_font
+)
 from api.type.pokemon_service import PokemonDTO
 import math
 
@@ -9,7 +15,8 @@ def get_svg_banner(pokemon: PokemonDTO, theme: str) -> str:
 
     themeColors = get_theme(theme)
     progress = get_svg_progress(themeColors, pokemon["level"], percent)
-    config = get_svg_configs()
+    font = get_font("./api/public/PressStart2P-Regular.ttf")
+    config = get_svg_configs(font)
     image = get_svg_image(pokemon['gif'])
 
     return f'''
