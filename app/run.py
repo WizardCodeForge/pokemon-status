@@ -19,7 +19,3 @@ def render():
     svg_content = get_svg_banner(pokeDTO, theme)
 
     return Response(svg_content, mimetype='image/svg+xml')
-
-
-if __name__ == '__main__':
-    app.run(port=8088)

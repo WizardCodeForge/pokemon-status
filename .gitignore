@@ -3,3 +3,4 @@ github_cache.sqlite
 http_cache.sqlite
 pokemon_cache.sqlite
 .env
+.venv
