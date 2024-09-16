@@ -1,9 +1,7 @@
 from api.type.svg_service import SvgTheme
 
-
 def get_svg_image(image: str) -> str:
     return f'<image href="{image}" x="100" y="10" width="200" height="140" />'
-
 
 def get_svg_progress(theme: SvgTheme, level: int, progress: int) -> str:
     return f'''
@@ -20,7 +18,6 @@ def get_svg_progress(theme: SvgTheme, level: int, progress: int) -> str:
         </defs>
     '''
 
-
 def get_svg_configs() -> str:
     return """
     <style>
@@ -35,11 +32,13 @@ def get_svg_configs() -> str:
     </style>
     <defs>
         <style>
-        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P');
+            @font-face {
+                font-family: 'Press Start 2P';
+                src: url('https://fonts.gstatic.com/s/pressstart2p/v9/e3t4euHUP9I2Fi4S9i5KqkUqPQlTJk4.ttf') format('truetype');
+            }
         </style>
     </defs>
     """
-
 
 def get_theme(theme: str) -> SvgTheme:
     colors: SvgTheme = {}
@@ -70,3 +69,12 @@ def get_theme(theme: str) -> SvgTheme:
             colors["title"] = "#228B22"
 
     return colors
+
+def generate_svg(image: str, theme: SvgTheme, level: int, progress: int) -> str:
+    return f'''
+    <svg xmlns="http://www.w3.org/2000/svg" width="400" height="240">
+        {get_svg_configs()}
+        {get_svg_image(image)}
+        {get_svg_progress(theme, level, progress)}
+    </svg>
+    '''
