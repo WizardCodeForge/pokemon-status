@@ -1,5 +1,5 @@
-from app.service.svg import get_svg_image, get_svg_progress, get_theme, get_svg_configs
-from app.type.pokemon_service import PokemonDTO
+from api.service.svg import get_svg_image, get_svg_progress, get_theme, get_svg_configs
+from api.type.pokemon_service import PokemonDTO
 import math
 
 

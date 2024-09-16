@@ -1,5 +1,5 @@
-from app.service.pokemon import get_primary_infos, get_level, get_pokemon_by_level, get_pokemon_gif
-from app.type.pokemon_service import PokemonDTO
+from api.service.pokemon import get_primary_infos, get_level, get_pokemon_by_level, get_pokemon_gif
+from api.type.pokemon_service import PokemonDTO
 
 
 def get_pokemon(name: str, xp: int) -> PokemonDTO:

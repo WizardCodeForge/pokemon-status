@@ -1,4 +1,4 @@
-from app.module import get_xp_by_github, get_pokemon, get_svg_banner
+from api.module import get_xp_by_github, get_pokemon, get_svg_banner
 from flask import Flask, request, Response
 from dotenv import load_dotenv
 
