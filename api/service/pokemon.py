@@ -78,6 +78,7 @@ def get_pokemon_gif(name: str) -> str:
     res = requests.get(url)
     data = res.json()
 
-    gif = data["sprites"]["versions"]["generation-v"]["black-white"]["animated"]["front_default"]
+    # gif = data["sprites"]["versions"]["generation-v"]["black-white"]["animated"]["front_default"]
+    gif = data["sprites"]["front_default"]
 
     return gif
