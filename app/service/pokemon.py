@@ -1,5 +1,5 @@
 import requests
-from type.pokemon_service import PrimaryDTO
+from app.type.pokemon_service import PrimaryDTO
 
 
 def get_primary_infos(pokemon: str) -> tuple[PrimaryDTO, bool]:

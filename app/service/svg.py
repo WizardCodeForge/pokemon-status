@@ -1,4 +1,4 @@
-from type.svg_service import SvgTheme
+from app.type.svg_service import SvgTheme
 
 
 def get_svg_image(image: str) -> str:

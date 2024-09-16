@@ -1,5 +1,5 @@
 import requests
-from type.github_service import MetricsDTO
+from app.type.github_service import MetricsDTO
 import os
 
 

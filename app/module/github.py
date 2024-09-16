@@ -1,5 +1,5 @@
-from service.github import get_basic_metrics
-from type.github_service import MetricsDTO
+from app.service.github import get_basic_metrics
+from app.type.github_service import MetricsDTO
 
 
 def get_xp_by_github(user: str) -> int:
