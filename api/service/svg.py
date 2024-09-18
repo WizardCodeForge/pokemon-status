@@ -95,19 +95,17 @@ def get_theme(theme: str) -> SvgTheme:
             colors["gradient_init"] = "#FF8CC5"
             colors["gradient_final"] = "#8CD4FF"
             colors["title"] = "#FF8CC5"    
-        
+
         case "glaceon":
             colors["background_bar"] = "#E0F7FA"
             colors["gradient_init"] = "#74C2E1"
             colors["gradient_final"] = "#439297"
             colors["title"] = "#74C2E1"    
 
-
         case "marshadow":
             colors["background_bar"] = "#747577"
             colors["gradient_init"] = "#2C2E30"
             colors["gradient_final"] = "#E1DB87"
             colors["title"] = "#C25036"    
-
 
     return colors
