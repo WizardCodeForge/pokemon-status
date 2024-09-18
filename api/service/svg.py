@@ -101,7 +101,7 @@ def get_theme(theme: str) -> SvgTheme:
             colors["gradient_final"] = "#8CD4FF"
             colors["title"] = "#FF8CC5"
             colors["percentage"] = "#000000"    
-        
+
         case "glaceon":
             colors["background_bar"] = "#E0F7FA"
             colors["gradient_init"] = "#74C2E1"
@@ -109,13 +109,11 @@ def get_theme(theme: str) -> SvgTheme:
             colors["title"] = "#74C2E1"
             colors["percentage"] = "#000000"    
 
-
         case "marshadow":
             colors["background_bar"] = "#747577"
             colors["gradient_init"] = "#2C2E30"
             colors["gradient_final"] = "#E1DB87"
             colors["title"] = "#C25036"
             colors["percentage"] = "#000000"    
-
 
     return colors
