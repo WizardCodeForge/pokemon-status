@@ -1,39 +1,38 @@
-
 # 🐱‍👤 Pokemon-Stats API 🎮
 
-**Transforme suas métricas do GitHub em XP para seu Pokémon favorito!** 🛡️⚔️
+**Turn your GitHub metrics into XP for your favorite Pokémon!** 🛡️⚔️
 
-### ✨ Sobre
+### ✨ About
 
-Quer deixar seu README ainda mais épico e envolvente? Esta API transforma suas contribuições e métricas do GitHub em uma jornada Pokémon, onde **cada commit, issue ou pull request publicos se transforma em experiência (XP)** para o seu Pokémon escolhido! 🎉
+Want to make your README even more epic and engaging? This API turns your GitHub contributions and metrics into a Pokémon journey, where every public **commit, issue or pull request turns into experience (XP)** for your chosen Pokémon! 🎉
 
-Basta adicionar algumas configurações ao seu README, e seu Pokémon estará lá, evoluindo com cada conquista no GitHub.
+Just add a few settings to your README, and your Pokémon will be there, evolving with each achievement on GitHub.
 
 ### 🚀 Como Funciona
 
-1. **GitHub Metrics** : A API extrai suas atividades do GitHub (commits, issues, PRs, etc.) e converte em XP.
-2. **XP Dinâmico** : Cada métrica conta para a evolução do seu Pokémon!
-3. **Personalização Total** : Escolha seu Pokémon favorito e aplique temas diversos.
+1. **GitHub Metrics** : The API extracts your activities from GitHub (commits, issues, PRs, etc.) and converts them into XP.
+2. **XP Dynamic** : Every metric counts towards your Pokémon's evolution!
+3. **Total customization**: Choose your favorite Pokémon and apply different themes.
 
-### 🏋️‍♂️ Argumentos Opcionais
+### 🏋️‍♂️ Optional Arguments
 
-* **`user`** : O nome de usuário do GitHub.
-* **`pokemon`** : O nome do seu Pokémon favorito (ex: `pikachu`, `charizard`, `bulbasaur`).
-* **`theme`** : Customize a aparência do seu cartão Pokémon com diferentes temas.
+* **`user`** : GitHub username.
+* **`pokemon`** : The name of your favorite Pokémon (e.g. `pikachu`, `charizard`, `bulbasaur`).
+* **`theme`** : Customize the look of your Pokémon card with different themes.
 
-### 🌟 Exemplos de Uso
+### 🌟 Usage examples
 
 `https://pokemon-status.vercel.app/?user=CriticalNoob02&pokemon=charmander&theme=charmander`
 
-### 🛠️ Como Usar no seu README
+### 🛠️ How to use it in your README
 
-Basta adicionar esta URL personalizada no seu README:
+Just add this custom URL to your README:
 
 ```md
 ![Pokémon GitHub Stats](https://pokemon-status.vercel.app/?user=SEU_USUARIO&pokemon=SEU_POKEMON&theme=SEU_TEMA)
 ```
 
-ou se preferir 
+or if you prefer
 
 ```md
 <div align="center">
@@ -41,14 +40,14 @@ ou se preferir
 </div>
 ```
 
-Seja criativo, escolha o seu Pokémon favorito e veja-o crescer conforme você contribui para o open source! ⚡
+Get creative, choose your favorite Pokémon and watch it grow as you contribute to open source! ⚡
 
-### 🌟 Temas disponiveis
+### 🌟 Themes available
 
-Ja existe uma pequena variedade de temas para utilizar
+There is already a small variety of themes to use
 
 <details>
-<summary>Ver temas...</summary>
+<summary>Show themes...</summary>
 
 - charmander
 
@@ -84,18 +83,19 @@ Ja existe uma pequena variedade de temas para utilizar
 
 </details>
 
-### 🚧 Pendências
 
-* Implementar suporte para Pokémon que evoluem por itens (ex: **Eevee -> Vaporeon** usando uma  **Water Stone** ).
-* Melhorar a lógica de evolução para Pokémon com múltiplas formas evolutivas.
-* Adicionar suporte para formas regionais e alternativas (ex:  **Alolan** ,  **Galarian** ).
-* Ainda nao existe uma garantia de compatibilidade com todos os navegadores (funciona perfeitamente no google chrome).
+### 🚧 Outstanding
 
-### 🔥 Recursos Futuros
+* Implement support for Pokémon that evolve using items (e.g.: **Eevee -> Vaporeon** using a **Water Stone** ).
+* Improve the evolution logic for Pokémon with multiple evolutionary forms.
+* Add support for regional and alternative forms (e.g.: **Alolan** , **Galarian** ).
+* There is still no guarantee of compatibility with all browsers (it works perfectly in google chrome).
 
-* Novos temas e efeitos animados! 🎨
-* Ajustes nos pesos das metricas do github! 📈
+### 🔥 Future features
+
+* New themes and animated effects! 🎨
+* Adjustments to the weights of the github metrics! 📈
 
 ---
 
-Contribua com seu conhecimento para esse projeto! 💻🎮
+Contribute your knowledge to this project! 💻🎮
