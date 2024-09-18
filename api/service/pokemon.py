@@ -51,7 +51,11 @@ def get_pokemon_by_level(evolution_url: str, level: int) -> str:
     data = res.json()
 
     current_pokemon = data["chain"]
+    if current_pokemon["is_baby"]:
+        current_pokemon = current_pokemon["evolves_to"][0]
+
     current_name = current_pokemon["species"]["name"]
+    print(current_name)
 
     if not current_pokemon["evolves_to"]:
         return current_name
@@ -59,15 +63,20 @@ def get_pokemon_by_level(evolution_url: str, level: int) -> str:
     while current_pokemon["evolves_to"]:
         evolution_details = current_pokemon["evolves_to"][0]["evolution_details"]
 
-        if evolution_details and "min_level" in evolution_details[0]:
-            min_level = evolution_details[0]["min_level"]
+        if evolution_details[0]["trigger"]["name"] == "level-up":
+            if evolution_details and "min_level" in evolution_details[0]:
+                min_level = evolution_details[0]["min_level"]
 
-            if level < min_level:
-                return current_name
+                if level < min_level:
+                    return current_name
 
-            current_name = current_pokemon["evolves_to"][0]["species"]["name"]
+                current_name = current_pokemon["evolves_to"][0]["species"]["name"]
 
-        current_pokemon = current_pokemon["evolves_to"][0]
+            current_pokemon = current_pokemon["evolves_to"][0]
+
+        # TODO adaptar evolucoes por item...
+        else:
+            current_pokemon = current_pokemon["evolves_to"][0]
 
     return current_name
 
