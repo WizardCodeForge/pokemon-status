@@ -6,3 +6,4 @@ class SvgTheme(TypedDict):
     gradient_init: str
     gradient_final: str
     title: str
+    percentage: str
